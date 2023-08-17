@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+		<record id="rutas_contactos_action" model="ir.actions.act_window">
+            <field name="name">Rutas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rutas.contacto</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Sin rutas registradas
+                </p>
+            </field>
+        </record>
+		
+        <menuitem id="rutas_contacto_menu"
+				  name="Rutas contacto"
+				  action ="rutas_contactos_action"
+				  parent="contacts.res_partner_menu_config"
+                  sequence="1"
+				  /> 
+		
+	</data>
+
+
+</odoo>

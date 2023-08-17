@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="ruta_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <t t-if='doc.ruta_tag'>Ruta: 
+                <span t-field="doc.ruta_tag"/>
+            </t>
+            <br />
+            <t t-if='doc.dia_tag'>Día: 
+                <span t-field="doc.dia_tag"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

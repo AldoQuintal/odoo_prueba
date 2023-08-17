@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="ruta_respartner_inherit_view" model="ir.ui.view">
+			<field name="name">ruta.respartner.inherit.view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='category_id']" position="after">
+                    <field string="Ruta" name="ruta_tag" force_save="1"/>
+                    <field name="ruta_list" force_save="1" invisible="1"/>
+                    <field name="dia" force_save="1" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ruta_tree_inherit_view" model="ir.ui.view">
+			<field name="name">ruta.tree.inherit.view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='user_id']" position="after">
+                    <field name="ruta_list" optional="show"/>
+                    <field name="dia" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+                

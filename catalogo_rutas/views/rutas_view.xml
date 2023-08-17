@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="rutas_contacto_view_form" model="ir.ui.view">
+            <field name="name">rutas.contacto.view.form"</field>
+            <field name="model">rutas.contacto</field>
+            <field name="arch" type="xml">
+                <form string="Rutas Form" duplicate="0">
+                    <sheet>
+                        <group>
+                            <field name="ruta"/>
+                            <field name="dia"/>
+                            <field name="description" />
+                        </group>
+                        <group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="rutas_contacto_view_tree" model="ir.ui.view">
+            <field name="name">rutas.contacto.view.tree"</field>
+            <field name="model">rutas.contacto</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <tree string="Rutas Tree" create="1" edit="1" delete="1">
+                    <field name="ruta"/>
+                    <field name="dia"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="ruta_sale_order_inherit_view" model="ir.ui.view">
+			<field name="name">ruta.sale.order.inherit.view</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="ruta_tag" attrs="{'invisible': [('ruta_tag', '=', False)]}" force_save="1" readonly="1"/>
+                    <field name="dia_tag" attrs="{'invisible': [('ruta_tag', '=', False)]}" force_save="1" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ruta_sale_order_inherit_list_view" model="ir.ui.view">
+			<field name="name">ruta.sale.order.inherit.list.view</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="ruta_tag" optional="show"/>
+                    <field name="dia_tag" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
