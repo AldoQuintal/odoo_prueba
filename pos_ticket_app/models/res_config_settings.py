@@ -15,6 +15,10 @@ class ResConfigSettings(models.TransientModel):
     #Referencia interna.
     pos_display_default_code = fields.Boolean(related="pos_config_id.display_default_code", readonly=False)
 
+    pos_display_price = fields.Boolean(
+        related="pos_config_id.display_list_price", readonly=False
+    )
+
     @api.depends('pos_is_custom_receipt', 'pos_config_id')
     def _compute_pos_is_custom_receipt(self):
         for res_config in self:

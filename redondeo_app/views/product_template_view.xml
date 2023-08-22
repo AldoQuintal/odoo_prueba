@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="product_template_inherit_copy" model="ir.ui.view">
+			<field name="name">product.template.inherit.copy</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[@name='pricing']" position="after">
+                    <field name="list_price_copia" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"></field>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_inherit_replace" model="ir.ui.view">
+			<field name="name">product.template.inherit.replace</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='list_price']" position="replace">
+                    <field name="list_price" invisible="1" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"></field>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_inherit_kanban" model="ir.ui.view">
+			<field name="name">product.template.inherit.kanban</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_kanban_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='list_price']" position="replace">
+                    <field name="list_price_copia" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"></field>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_inherit_list" model="ir.ui.view">
+			<field name="name">product.template.inherit.list</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_tree_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='list_price']" position="replace">
+                    <field name="list_price_copia" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"></field>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

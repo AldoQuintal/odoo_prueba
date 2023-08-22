@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Quote order form view -->
+
+    <record id="view_sales_order_filter_quote_order" model="ir.ui.view">
+        <field name="name">sale.order.search.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="website_sale.view_sales_order_filter_ecommerce"/>
+        <field name="mode">primary</field> 
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='from_website']" position="after">
+                <filter string="Reuqest Quotation" name="request_quote_order" domain="[('is_quote_order', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_quotation_orders" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_request_quote_order': 1}</field>
+        <field name="search_view_id" ref="view_sales_order_filter_quote_order"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                There is no confirmed order from the website
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_quotation_request" name="Quotation Request"
+        action="action_quotation_orders"
+        parent="website_sale.menu_orders" sequence="5"/>
+
+    <record id="res_config_settings_view_form_inherited" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <div id="request_quotation">
+                    <h2>Request Quotation</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="send_quotation_automatic"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <div class="w-50">
+                                    <span class="o_form_label">
+                                        Send Quotation Automatic
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

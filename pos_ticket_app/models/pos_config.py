@@ -11,3 +11,4 @@ class PosConfig(models.Model):
 
     #Referencia Interna. 
     display_default_code = fields.Boolean(default=False)
+    display_list_price = fields.Boolean(default=False)

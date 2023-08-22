@@ -193,6 +193,7 @@ class websiteProductQuote(http.Controller):
 	
 	def send_quotation_automatic(self, sale_order_create):
 		template_id = request.env.ref('website_product_variant_quote_av.email_template_request_quotation', raise_if_not_found=False)
+		print(f'Template_id_: {template_id}')
 		template_id.sudo().send_mail(sale_order_create, force_send=True)
 		return True
 
