@@ -9,6 +9,7 @@
 				<xpath expr="//field[@name='partner_id']" position="after">
                     <field name="ruta_tag" attrs="{'invisible': [('ruta_tag', '=', False)]}" force_save="1" readonly="1"/>
                     <field name="dia_tag" attrs="{'invisible': [('ruta_tag', '=', False)]}" force_save="1" readonly="1"/>
+                    <field name="ruta" attrs="{'invisible':True}" force_save="1" readonly="1"/>
                 </xpath>
             </field>
         </record>

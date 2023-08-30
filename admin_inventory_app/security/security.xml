@@ -1,0 +1,13 @@
+<odoo>
+
+    <record id="module_inventory_admin_category" model="ir.module.category">
+        <field name="name">Responsable de operaciónes de entrega</field>
+        <field name="sequence">2</field>
+    </record>
+    
+    <record id="inventory_admin_perm" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_inventory_admin_category"/>
+    </record>
+
+</odoo>

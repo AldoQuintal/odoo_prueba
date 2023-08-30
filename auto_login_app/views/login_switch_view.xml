@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="login_switch_menu" name="Login" web_icon="auto_login_app,static/description/icon.png"/>
+</odoo>

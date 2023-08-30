@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_details_wizard_form" model="ir.ui.view">
+            <field name="name">product.details.wizard.form</field>
+            <field name="model">product.details.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Product Details Barcode">
+                    <group>
+                        <group>
+                            <field name="partner_id" context="{'res_partner_search_mode': 'customer'}" options="{'no_create': True, 'no_quick_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                            <field name="product_category_id" options="{'no_create': True, 'no_quick_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="pricelist_ids" options="{'no_create': True, 'no_quick_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        
+                    </group>
+                    <group>
+                        <group attrs="{'invisible': [('is_printed','!=',True)]}" colspan="4">
+                        <field widget="binary" name="report_file" nolabel="1" filename="xls_report_name" colspan="4"/>
+                        <field name="xls_report_name" nolabel="1" readonly="1" invisible="1"/>
+                    </group>
+
+                    <group>
+                        <field name="is_printed" nolabel="1" readonly="1" invisible="1"/>
+                    </group>
+
+                    </group>
+                    <footer>
+                        <button string='Export' name="export_details" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- <act_window
+                name="Export Product Details"
+                res_model="product.details.wizard"
+                binding_model="product.product"
+                view_mode="form"
+                target="new"
+                id="action_product_wizard"
+        />
+        <act_window
+                name="Export Product Details"
+                res_model="product.details.wizard"
+                binding_model="product.template"
+                view_mode="form"
+                target="new"
+                id="action_product_template_wizard"
+        /> -->
+
+        
+        <record id="action_dev_customer_pricelist_export" model="ir.actions.act_window">
+            <field name="name">Export Pricelist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.details.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_details_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+    
+        <menuitem name="Export Customer Pricelist"
+                  id="menu_dev_customer_pricelist_export"
+                  parent="sale.menu_sale_report"
+                  sequence="0"
+                  action="action_dev_customer_pricelist_export"/>
+	
+    </data>
+</odoo>

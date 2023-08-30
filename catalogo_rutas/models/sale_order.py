@@ -10,6 +10,8 @@ class SaleOrder(models.Model):
 
     ruta_tag = fields.Char(string="Ruta")
     dia_tag = fields.Char(string="Día")
+    ruta = fields.Many2one('rutas.contacto')
+
 
 
     # @api.model_create_multi
@@ -21,10 +23,13 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def _get_ruta_tag(self):
-        print(self.partner_id.ruta_tag.ruta)
+        print(self.partner_id.ruta_tag.id)
+        
         self.write({
             'ruta_tag'  : self.partner_id.ruta_tag.ruta,
-            'dia_tag'   : self.partner_id.ruta_tag.dia
+            'dia_tag'   : self.partner_id.ruta_tag.dia,
+            'ruta'      : self.partner_id.ruta_tag.id
+            
         })
 
         # self.ruta_tag = self.partner_id.ruta_tag.ruta

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="dev_customer_pricelist_wizard" model="ir.ui.view">
+        <field name="name">dev.customer.pricelist.wizard</field>
+        <field name="model">customer.pricelist.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Customer Pricelist">
+                <group>
+                    <group>
+                        <field name="partner_id" options="{'no_create': True, 'no_quick_create': True, 'no_open': True, 'no_create_edit': True}" invisible="1"/>
+                        <field name="product_category_id" options="{'no_create': True, 'no_quick_create': True, 'no_open': True, 'no_create_edit': True}" attrs="{'invisible':[('excel_file','!=',False)]}"/>
+                        <field name="excel_file"  readonly="1" filename="file_name" attrs="{'invisible':[('excel_file','=',False)]}"/>
+                        <field name="report_file"  readonly="1" filename="file_name" attrs="{'invisible':[('excel_file','=',False)]}"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Export Pricelist" name="export_customer_pricelist" type="object" class="oe_highlight" /> Or
+                    <button string="Send Mail" attrs="{'invisible':[('excel_file','=',False)]}"   name="mail_send_customer_pricelist" type="object" class="oe_highlight" /> 
+                    <button string="Close Window" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dev_customer_pricelist" model="ir.actions.act_window">
+        <field name="name">Export Pricelist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.pricelist.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dev_customer_pricelist_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <act_window id="act_export_pricelist"
+            name="Export Customer Pricelist"
+            res_model="customer.pricelist.wizard" 
+            binding_model="res.partner"
+            view_mode="form" 
+            target="new"	
+    />
+
+
+</odoo>

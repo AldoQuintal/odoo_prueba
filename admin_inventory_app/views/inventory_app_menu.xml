@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+	
+		<record id="inventory_app_menu" model="ir.actions.act_window">
+            <field name="name">Admin</field>
+            <field name="res_model">inventory.app.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Sin eventos
+                </p>
+            </field>
+        </record>
+		
+        <menuitem id="Inventory_app_menu" 
+        name="Validar picking" 
+        parent="sale.sale_menu_root"
+        sequence="45"/>
+
+        <menuitem id="Inventory_app" 
+        name="Asistente" 
+        action="action_opne_update_wizard" 
+        parent="Inventory_app_menu"/>
+	</data>
+	
+</odoo>
