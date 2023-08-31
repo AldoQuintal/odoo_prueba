@@ -21,8 +21,13 @@
                         <group>
                         </group>
                     </group>
-                    <button name="action_switch" string="Aceptar"
-                            type="object" class="btn-primary"/>
+                    <group>
+                        <group>
+                            <button name="action_switch" string="Aceptar"
+                                type="object" class="btn-primary"/>
+                        </group>
+                    </group>
+                    
                     
                     
                 </sheet>
