@@ -6,12 +6,27 @@
         <field name="name">login.app.wizard.form</field>
         <field name="model">login.app.wizard</field>
         <field name="arch" type="xml">
-            <form string="Auto Login">
-                <group>
+            <form string="Auto Login" >
+                <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="name" nolabel="1" colspan="2" decoration-bf="1" style="font-size:20px;"/>
+                        <group string="Seleccione la ruta" style="font-size:18px; color:#873677;">
+                            <field name="ruta_contacto" colspan="2"/>
+                        </group>
                     </group>
-                </group>
+                    <group>
+                        <group string="Clientes para esta ruta" style="font-size:18px; color:#873677;">
+                            <field name="clientes_ruta" colspan="2"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <button name="action_switch" string="switch user"
+                            type="object" class="btn-primary"/>
+                    <button string="cancel" special="cancel"
+                            class="btn-secondary"/>
+                    
+                </sheet>
             </form>
         </field>
     </record>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+        <data>
+         <template id="assets_common" name="web assets" inherit_id="web.assets_common">
+                <t t-call="web.less_helpers"/>
+                    <xpath expr="//link[last()]" position="after">
+                        <link rel="stylesheet" type="text/css" href="static/src/css/edit_dimension.css"/>
+                    </xpath>
+            </template>
+        </data>
+    </odoo>

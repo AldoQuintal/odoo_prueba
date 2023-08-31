@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+acceso_login_app_wizard,acceso login app wizard,model_login_app_wizard,,1,1,1,1
