@@ -6,7 +6,7 @@
         <field name="name">login.app.wizard.form</field>
         <field name="model">login.app.wizard</field>
         <field name="arch" type="xml">
-            <form string="Auto Login" >
+            <form string="Auto Login" create="0" edit="0" delete="0">
                 <sheet>
                     <group>
                         <field name="name" nolabel="1" colspan="2" decoration-bf="1" style="font-size:20px;"/>
@@ -21,10 +21,9 @@
                         <group>
                         </group>
                     </group>
-                    <button name="action_switch" string="switch user"
+                    <button name="action_switch" string="Aceptar"
                             type="object" class="btn-primary"/>
-                    <button string="cancel" special="cancel"
-                            class="btn-secondary"/>
+                    
                     
                 </sheet>
             </form>
