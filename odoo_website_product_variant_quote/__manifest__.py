@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
-# Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
+
 {
-    'name': 'Website Get Quote Shop for Product Variant',
-    'version': '16.0.0.0',
+    'name': 'Website Get Quote Shop',
     'category': 'eCommerce',
-    'license': 'OPL-1',
-    'summary': 'Get Quote Web Design Form Template website ask for quote website Request for quotation Website Product Quote website request quote shop Get a Quote website Get Quote shop Product variant Quote Request for quote Website Quote Request A Quote for products',
+    'license': "LGPL-3",
+    'summary': 'Con este módulo se añade la posibilidad de hacer una cotización para el cliente.',
     "description": """
-This odoo app helps user to get quote from website shop for product variants with login or non login user and crate customer for non login user. User can configure quote product varinat sna see this product on get quote shop, add to cart quote variants, increase or decrease quantity and create quote, if user not logged in then customer will created from details with quote.
+    Con este módulo se añade la posibilidad de hacer una cotización para el cliente.
     """,
-    'author': 'BrowseInfo',
-    'website': 'https://www.browseinfo.in',
-    "price": 35,
-    "currency": 'EUR',
+    'author': 'Gasomarshal',
+    'website': 'https://www.gasomarshal.com',
+
     'depends': ['website', 'website_sale', 'sale_management'],
     'data': [
         'security/ir.model.access.csv',
-        'data/data.xml',
+        #'data/data.xml',
         'data/mail_data.xml',
         'views/product_view.xml',
         'views/quotation_request_view.xml',
@@ -25,12 +23,10 @@ This odoo app helps user to get quote from website shop for product variants wit
     'qweb': [],
     "auto_install": False,
     "installable": True,
-    "live_test_url": 'https://youtu.be/7njvajS8ys4',
-    "images": ["static/description/Banner.gif"],
     'assets':{
         'web.assets_frontend':[
             'odoo_website_product_variant_quote/static/src/js/web.js',
         ]
     },
-    'license': 'OPL-1',
+    'images': ['static/description/icon.png']
 }

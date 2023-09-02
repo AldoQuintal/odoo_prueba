@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 
 import datetime
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
@@ -59,12 +58,9 @@ class OdooWebsiteProductQuote(http.Controller):
 
 	# Vendor Login Page
 
-	@http.route(['/login'], type='http', auth="public", website=True)
-	def login(self,page=0, **post):
-		return request.render("odoo_website_product_variant_quote.login")
-
-
-
+	# @http.route(['/login'], type='http', auth="public", website=True)
+	# def login(self,page=0, **post):
+	# 	return request.render("odoo_website_product_variant_quote.login")
 
 
 	@http.route(['/quote'], type='http', auth="public", website=True)

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models, api, _
 from odoo.addons.website.models import ir_http
@@ -47,17 +46,17 @@ class Website(models.Model):
     send_quotation_automatic = fields.Boolean(string='Send Quotation Automatic')
 
 
-    # Vendor login page
+    # # Vendor login page
 
-    def get_vendor_id(self):
-        vendor_id = self.env.user
-        prueba = self.env['res.partner'].sudo().search([('user_id', '=', self.env.user.id)])
-        print(f'El vendedor actual es: {prueba}')
-        for vendor in prueba:
-            print(f'Cliente: {vendor.name}')
-            print(f'Ruta del vendedor: {vendor.ruta_tag}')
+    # def get_vendor_id(self):
+    #     vendor_id = self.env.user
+    #     prueba = self.env['res.partner'].sudo().search([('user_id', '=', self.env.user.id)])
+    #     print(f'El vendedor actual es: {prueba}')
+    #     for vendor in prueba:
+    #         print(f'Cliente: {vendor.name}')
+    #         print(f'Ruta del vendedor: {vendor.ruta_tag}')
             
-        return prueba
+    #     return prueba
 
 
 

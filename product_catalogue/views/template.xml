@@ -4,4 +4,10 @@
             <script type="text/javascript" src="/product_catalogue/static/src/js/website_report.js"/>
         </xpath>
     </template>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Custom Module">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/product_catalogue/static/src/css/style.css"/>
+        </xpath>
+    </template>
 </odoo>

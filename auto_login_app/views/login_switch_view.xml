@@ -8,21 +8,38 @@
         <field name="arch" type="xml">
             <form string="Auto Login" create="0" edit="0" delete="0">
                 <sheet>
+                    <div class="alert alert-danger" role="alert" attrs="{'invisible': [('alert', '=', False)]}">
+                        <field name="alert" readonly="1" force_save="1"/>
+                    </div>
                     <group>
-                        <field name="name" nolabel="1" colspan="2" decoration-bf="1" style="font-size:20px;"/>
-                        <group string="Seleccione la ruta" style="font-size:18px; color:#873677;">
+                        <group>
+                            
+                            <field name="name" nolabel="1" colspan="2" decoration-bf="1" force_save="1" style="font-size:20px;"/>
+                            <field name="space"/>
+                            <field  name="is_vendor"/>
+                            <field name="new_vendor" attrs="{'invisible': [('is_vendor', '=', False)],
+                                                                            'required': [('is_vendor','=',True)]}"/>        
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group >
+                        <group>
                             <field name="ruta_contacto" colspan="2"/>
+                        </group>
+                        <group>
                         </group>
                     </group>
                     <group>
-                        <group string="Clientes para esta ruta" style="font-size:18px; color:#873677;">
+                        <group>
                             <field name="clientes_ruta" colspan="2"/>
                         </group>
                         <group>
                         </group>
                     </group>
-                    <group>
-                        <group>
+                    <group >
+                        <group >
+                            <field name="space"/>
                             <button name="action_switch" string="Aceptar"
                                 type="object" class="btn-primary"/>
                         </group>
@@ -38,6 +55,7 @@
 
     <record id="login_app_menu" model="ir.actions.act_window">
         <field name="name">Admin</field>
+        <field name="target">inline</field>
         <field name="res_model">login.app.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="login_app_wizard_form"/>
@@ -48,7 +66,7 @@
     </record>
 
     <menuitem id="login_switch_menu" 
-    name="Login" 
+    name="Levantamiento de pedido" 
     action="login_app_menu"
     web_icon="auto_login_app,static/description/icon.png"/>
 

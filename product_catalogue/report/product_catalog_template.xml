@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_product_catalog" name="report_product_catalog">
+        
          <t t-if="o and 'company_id' in o">
                 <t t-set="company" t-value="o.company_id"></t>
             </t>
@@ -18,10 +19,11 @@
             <t t-call="web.external_layout">
             <t t-foreach="docs" t-as="o">
                     <div class="page">
-                        <h2>PRODUCT CATALOGUE</h2>
+                        <link rel="stylesheet" href="/product_catalogue/static/src/css/style.css"/>
+                        <h2 class="holabola">PRODUCT CATALOGUE</h2>
                         <br/>
-                        <table class="table table-bordered" style="border: 2px solid black;">
-                            <!-- <thead>
+                        <table>
+                            <thead>
                                 <tr>
                                     <th class="text-center" style="background-color:#893b74; color:#fff; border: 2px solid black;font-family:Verdana">
                                         <p style="font-weight: bold;" t-field="o.name"/>
@@ -30,12 +32,12 @@
                                         <p>Specifications</p>
                                     </th>
                                 </tr>
-                            </thead> -->
+                            </thead>
                             <tbody>
                                 <tr>
                                     <td style="border: 2px solid black;">
                                         <div class="col-12 text-center">
-                                            <p style="padding: 50px;" t-field="o.image_128" t-options='{"widget": "image"}'/>
+                                            <p style="padding: 50px;" t-field="o.image_128" class="imagecurve"/>
                                             <t t-if="o.categ_id">
                                                 <span t-field="o.categ_id.name"/>
                                                 <br/>
@@ -57,7 +59,7 @@
                                             
                                         </div>
                                     </td>
-                                    <!-- <td style="border: 0px solid black;">
+                                    <td style="border: 0px solid black;">
                                         <t t-if="o.categ_id">
                                             <span>Category</span>
                                             <br/>
@@ -98,7 +100,7 @@
                                                 <span t-field="o.description"/>
                                             </t> 
                                         </div>
-                                    </td>-->
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

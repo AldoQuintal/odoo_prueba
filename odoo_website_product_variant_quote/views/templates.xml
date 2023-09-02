@@ -164,7 +164,7 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <h3 class="mt32 mb32 text-center">
-                    Request a Quote?
+                    Request a Quote
                 </h3>
                 <div class="container container-fluid mt32 mb32 oe_website_sale py-2">
                     <div class="row">
@@ -281,7 +281,7 @@
 
     <!-- quote_request_page page -->
 
-    <template id="quote" name="Website Product Quote Request">
+    <!-- <template id="quote" name="Website Product Quote Request">
         <t t-call="website.layout">
             <div class="container container-fluid">
                 <div class="row">
@@ -319,8 +319,8 @@
                                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                                         <span>Wish List</span>
                                                     </a>
-                                                    <!-- ############################################################################ -->
-                                                    <!-- Login user -->
+                                                    ############################################################################ 
+                                                    Login user 
                                                     <t t-if="len(product.product_variant_ids) == 1">
                                                         <div style="text-align: center;">
                                                             <t t-set="product_variant_id"
@@ -341,7 +341,7 @@
                                                         </div>
                                                     </t>
 
-                                                    <!-- ############################################################################ -->
+                                                 ############################################################################ 
 
 
                                                     <a href="#" class="action actions-secondary" title="Compare"
@@ -372,10 +372,10 @@
                 </div>
             </div>
         </t>
-    </template>
+    </template> -->
 
     <!-- Vendor Login page -->
-    <template id="login" name="Website login vendor">
+    <!-- <template id="login" name="Website login vendor">
         <t t-call="website.layout">
             <div class="container container-fluid">
                 <div class="row">
@@ -396,7 +396,7 @@
                 </div>
             </div>
         </t>
-    </template>
+    </template> -->
 
 
 

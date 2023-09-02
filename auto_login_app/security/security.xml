@@ -5,8 +5,8 @@
         <field name="sequence">3</field>
     </record>
     
-    <record id="login_app_perm" model="res.groups">
-        <field name="name">Vendor</field>
+    <record id="group_log_app_perm" model="res.groups">
+        <field name="name">Vendedor login</field>
         <field name="category_id" ref="module_login_app_category"/>
     </record>
 
