@@ -22,6 +22,9 @@
 #############################################################################
 from odoo import api, fields, models
 from odoo.http import request
+from logging import getLogger
+
+LOGGER = getLogger(__name__)
 
 
 class UserSelection(models.Model):
@@ -57,6 +60,10 @@ class UserSelection(models.Model):
         Return:
             Main login page after logged in
         """
+
+        LOGGER.info(f'self.env.cr.dbname<<<< {self.env.cr.dbname}')
+        LOGGER.info(f'Login: {self.user_id.login}')
+       
         self.ensure_one()
         session = request.session
         session.update({

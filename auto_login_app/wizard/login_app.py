@@ -159,7 +159,7 @@ class LoginAutoWizard(models.TransientModel):
         else:
             self.alert = False
         
-        
+        LOGGER.info(f'Base de datos///: {self.env.cr.dbname}')
         self.ensure_one()
         session = request.session
         session.update({
