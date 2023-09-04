@@ -57,6 +57,7 @@ class LoginAutoWizard(models.TransientModel):
         LOGGER.info("Esta es una prueba de log")
         print("Se afecto el name")
         self.clientes_ruta = ''
+        self.ruta_contacto = ''
         rute_ids = []
 
         LOGGER.info(f'Usuario Self : {self.env.user.id}')
