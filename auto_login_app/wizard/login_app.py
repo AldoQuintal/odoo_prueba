@@ -58,6 +58,11 @@ class LoginAutoWizard(models.TransientModel):
         print("Se afecto el name")
         self.clientes_ruta = ''
         rute_ids = []
+
+        LOGGER.info(f'Usuario Self : {self.env.user.id}')
+
+        LOGGER.info(f'Nuevo usuario : {self.new_vendor.id}')
+
         
         if not self.is_vendor:
             ruta_select = self.env['res.partner'].sudo().search([('user_id', '=', self.env.user.id)])
