@@ -143,12 +143,13 @@ class LoginAutoWizard(models.TransientModel):
             }
         else:
             self.alert = False
-
+        LOGGER.info(f'Clientes_ruta: {self.clientes_ruta}')
         usuario = self.env['res.users'].sudo().search([('partner_id', '=', self.clientes_ruta.id)])
+        LOGGER.info(f'Usuario: {usuario}')
         print(f'Usuario : {usuario}')
 
         if not usuario:
-            self.alert = f'Este usuario {self.clientes_ruta.name} no cuenta con permisos para entrar al portal.'
+            self.alert = f'Este usuario no cuenta con permisos para entrar al portal.'
             self.ruta_contacto = ''
             self.clientes_ruta = ''
             return {
