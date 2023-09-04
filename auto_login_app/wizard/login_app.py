@@ -119,11 +119,13 @@ class LoginAutoWizard(models.TransientModel):
 
         print(f'Actual vendor? : {actual_vendor}')
 
-        for rec in self:
-            print(f'Rec: {rec.ruta_contacto.id}')
-            do = {'domain': {'clientes_ruta': [('ruta_tag', '=', rec.ruta_contacto.id), ('user_id', '=', actual_vendor)]}}
-            print(f'do: {do}')
-            return do
+        LOGGER.info(f'Ruta contacto *************: {self.ruta_contacto}')
+        if self.ruta_contacto:
+            for rec in self:
+                print(f'Rec: {rec.ruta_contacto.id}')
+                do = {'domain': {'clientes_ruta': [('ruta_tag', '=', rec.ruta_contacto.id), ('user_id', '=', actual_vendor)]}}
+                print(f'do: {do}')
+                return do
 
     def action_switch(self):
         if not self.clientes_ruta:
