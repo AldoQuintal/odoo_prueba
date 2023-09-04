@@ -82,7 +82,9 @@ class LoginAutoWizard(models.TransientModel):
 
             return domai
         else:
-            return {'domain': {'ruta_contacto': []}}
+            LOGGER.info("No tiene vendedor asignado")
+
+            return {'domain': {'ruta_contacto': [('id', 'in', rute_ids)]}}
     
     def name_get(self):
         print("Prueba odoo")
