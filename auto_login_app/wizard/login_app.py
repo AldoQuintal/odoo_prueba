@@ -3,10 +3,13 @@
 from odoo import fields, models, api, _
 from odoo.http import request
 from odoo.exceptions import AccessError, UserError, ValidationError
+from logging import getLogger
 
 class LoginAutoWizard(models.TransientModel):
     _name = "login.app.wizard"
     _description = 'Wizard ventas en Ecommerce'
+
+    LOGGER = getLogger(__name__)
     
     is_vendor = fields.Boolean(string="No es usted?")
     new_vendor = fields.Many2one('res.users', string="Otro vendedor")
@@ -33,7 +36,10 @@ class LoginAutoWizard(models.TransientModel):
         
     
 
+    LOGGER.info("Esta es una prueba de log")
 
+
+    
     name = fields.Char(string="Vendedor actual:", readonly=True)
     ruta_contacto = fields.Many2one('rutas.contacto')
     clientes_ruta = fields.Many2one('res.partner')
