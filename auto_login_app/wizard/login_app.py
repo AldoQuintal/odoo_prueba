@@ -66,17 +66,17 @@ class LoginAutoWizard(models.TransientModel):
             
         
         LOGGER.info(f'Vendedor : {ruta_select}')
-        if not ruta_select:
-             raise UserError(_(
-                    f'El vendedor {self.new_vendor.name} no cuenta con rutas asignadas'))
+        # if not ruta_select:
+        #      raise UserError(_(
+        #             f'El vendedor {self.new_vendor.name} no cuenta con rutas asignadas'))
 
-        for rec in ruta_select:
-            rute_ids.append(rec.ruta_tag.id)
+        # for rec in ruta_select:
+        #     rute_ids.append(rec.ruta_tag.id)
             
             
-            domai = {'domain': {'ruta_contacto': [('id', 'in', rute_ids)]}}
+        #     domai = {'domain': {'ruta_contacto': [('id', 'in', rute_ids)]}}
 
-        return domai
+        # return domai
     
     def name_get(self):
         print("Prueba odoo")
