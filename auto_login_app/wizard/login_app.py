@@ -65,9 +65,9 @@ class LoginAutoWizard(models.TransientModel):
 
         
         if not self.is_vendor:
-            ruta_select = self.env['res.partner'].search([('user_id', '=', self.env.user.id)])
+            ruta_select = self.env['res_partner'].search([('user_id', '=', self.env.user.id)])
         else:
-            ruta_select = self.env['res.partner'].search([('user_id', '=', self.new_vendor.id)])
+            ruta_select = self.env['res_partner'].search([('user_id', '=', self.new_vendor.id)])
             
         
         LOGGER.info(f'Vendedor : {ruta_select}')
