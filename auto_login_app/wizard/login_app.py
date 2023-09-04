@@ -64,7 +64,8 @@ class LoginAutoWizard(models.TransientModel):
         else:
             ruta_select = self.env['res.partner'].sudo().search([('user_id', '=', self.new_vendor.id)])
             
-        print(f'sigleton: {ruta_select}')
+        
+        LOGGER.info(f'Vendedor : {ruta_select}')
         if not ruta_select:
              raise UserError(_(
                     f'El vendedor {self.new_vendor.name} no cuenta con rutas asignadas'))
