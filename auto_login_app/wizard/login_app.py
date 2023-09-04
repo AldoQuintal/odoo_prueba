@@ -81,6 +81,8 @@ class LoginAutoWizard(models.TransientModel):
                 domai = {'domain': {'ruta_contacto': [('id', 'in', rute_ids)]}}
 
             return domai
+        else:
+            return {'domain': {'ruta_contacto': []}}
     
     def name_get(self):
         print("Prueba odoo")
