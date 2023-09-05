@@ -37,8 +37,8 @@ class InventoryAdminWizard(models.TransientModel):
         for a in vals_list[0]['ruta'][0][2]:
             id_ruta = a
             rute = self.env['rutas.contacto'].search([('id', '=', id_ruta)])
-            #print(f'Sale order, {sale_order}')
-            #print(vals_list[0]['user'])
+            print(f'Ruteee, {rute}')
+            print(vals_list[0]['user'])
             rute.update({
                 'user_id'   : vals_list[0]['user']
             })
@@ -60,7 +60,7 @@ class InventoryAdminWizard(models.TransientModel):
                 ('ruta', '=', rute.id),
                 ])
             
-            #print(f'Sale order: {sale_order}')
+            print(f'Sale order: {sale_order}')
 
             for data in sale_order:
                 pick = self.env['stock.picking'].search([
@@ -69,11 +69,11 @@ class InventoryAdminWizard(models.TransientModel):
                     
                 if pick:
                     for pi in pick:
-                        #print(f'Pickeo: {pick}')
+                        print(f'Pickeo: {pick}')
                         #print(pick.create_date.day) 
                         fecha = pytz.utc.localize(pi.create_date).astimezone(tz)
                         #print(f'Fecha con mi time zone {fecha}')
-                        #print(f'Pick: {pick}')
+                        print(f'Pick: {pick}')
                         #print(f'Fecha: {fecha.day}')
                         #print(f'Fecha today: {today.day}')
 
@@ -123,18 +123,26 @@ class Picking(models.Model):
         vals_list[0].update({
             'date_today'    :   datetime.now(tz).date()
         })
-        sale_order = self.env['sale.order'].search([('name', '=', vals_list[0]['origin'])])
-        ruta = self.env['rutas.contacto'].search([('id', '=', sale_order.ruta.id)])
-        #print(f'Rutaa: {ruta}')
-        today = datetime.now(tz).date()
-        if ruta:    
-            fecha = pytz.utc.localize(ruta.write_date).astimezone(tz)
-            
-            if fecha.day == today.day:
-                vals_list[0].update({
-                    'user_id'   :   ruta.user_id.id
-                })
-            
+
+        print(f'Vals list in pos: {vals_list}')
+
+        for a in vals_list[0]:
+            print(f' aaaa {a}')
+            if a == 'origin':
+
+                sale_order = self.env['sale.order'].search([('name', '=', vals_list[0]['origin'])])
+                print(f'sale order: {sale_order}')
+                ruta = self.env['rutas.contacto'].search([('id', '=', sale_order.ruta.id)])
+                #print(f'Rutaa: {ruta}')
+                today = datetime.now(tz).date()
+                if ruta:    
+                    fecha = pytz.utc.localize(ruta.write_date).astimezone(tz)
+                    
+                    if fecha.day == today.day:
+                        vals_list[0].update({
+                            'user_id'   :   ruta.user_id.id
+                        })
+                break
         res = super(Picking, self).create(vals_list)
         return res
     

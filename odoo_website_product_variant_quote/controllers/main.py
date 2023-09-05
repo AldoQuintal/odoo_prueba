@@ -213,6 +213,7 @@ class OdooWebsiteProductQuote(http.Controller):
 	@http.route(['/shop/product/quote/confirm'], type='http', auth="public", website=True)
 	def quote_confirm(self, **post):
 		order = request.env['quote.order'].sudo().browse(request.session['quote_order_id'])
+		print(f'Order : {order}')
 		if not order:
 			order = request.env['quote.order'].sudo().search([],order='id desc', limit=1)
 		product_obj = request.env['product.template']        
@@ -228,7 +229,9 @@ class OdooWebsiteProductQuote(http.Controller):
 				'team_id': request.website.salesteam_id and request.website.salesteam_id.id,
 				'is_quote_order' : True,
 			} 
+		print(f'vals: {vals}')
 		sale_order_create = sale_order_obj.sudo().create(vals)
+
 		for i in order.quote_lines:
 			line_vals = {    
 						'product_id': i.product_id.id, 
@@ -236,8 +239,10 @@ class OdooWebsiteProductQuote(http.Controller):
 						'product_uom_qty': i.qty, 
 						'customer_lead':7, 
 						'product_uom':i.product_id.uom_id.id,
-						'order_id': sale_order_create.id  }			
+						'order_id': sale_order_create.id  }	
+					
 			sale_order_line_create = sale_order_line_obj.sudo().create(line_vals)
+			print(f'Sale order Line {sale_order_line_create}')
 
 		# Send mail
 		is_send_quote = request.website.send_quotation_automatic
