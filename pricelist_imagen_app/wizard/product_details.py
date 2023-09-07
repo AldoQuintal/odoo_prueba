@@ -15,6 +15,9 @@ class ProductDetailsWizard(models.TransientModel):
     pricelist_ids = fields.Many2one('product.pricelist', string='Pricelist', required=True)
     product_category_id = fields.Many2one('product.category', string='Product Category', required=True)
     excel_file = fields.Binary(string='Excel File')
+    is_price = fields.Boolean(string='Sale price')
+    is_cost = fields.Boolean(string='Cost')
+    
     ##############################################
 
     based_on = fields.Selection([
@@ -34,6 +37,9 @@ class ProductDetailsWizard(models.TransientModel):
         datas = {'ids': context.get('active_ids', [])}
         datas['model'] = 'product.details.wizard'
         datas['form'] = self.read()[0]
+
+        print(f'Datas: {datas}')
+    
 
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output)
@@ -57,9 +63,36 @@ class ProductDetailsWizard(models.TransientModel):
         pricelist_format.set_align('vcenter')
         merge_format.set_bg_color('silver')
         merge_format.set_align('vcenter')
-        worksheet.merge_range('A1:G1', self.partner_id.name, merge_format)
+        
 
-        worksheet.merge_range('A2:G2', f'Pricelist: {self.pricelist_ids.name}', pricelist_format)
+        if datas['form']['is_price'] and datas['form']['is_cost'] :
+            
+            worksheet.merge_range('A2:I2', f'Pricelist: {self.pricelist_ids.name}', pricelist_format)
+            worksheet.merge_range('A1:I1', self.partner_id.name, merge_format)
+
+        if datas['form']['is_price']  == False and datas['form']['is_cost'] == False :
+            print("Else")
+            worksheet.merge_range('A1:G1', self.partner_id.name, merge_format)
+            worksheet.merge_range('A2:G2', f'Pricelist: {self.pricelist_ids.name}', pricelist_format)
+        
+        if datas['form']['is_price'] and datas['form']['is_cost'] == False:
+            print("Entro al if 1")
+            worksheet.merge_range('A1:H1', self.partner_id.name, merge_format)
+            worksheet.merge_range('A2:H2', f'Pricelist: {self.pricelist_ids.name}', pricelist_format)
+        
+        if datas['form']['is_price'] == False and datas['form']['is_cost']:
+            print("Entro al if 2")
+            worksheet.merge_range('A1:H1', self.partner_id.name, merge_format)
+            worksheet.merge_range('A2:H2', f'Pricelist: {self.pricelist_ids.name}', pricelist_format)
+
+        if datas['form']['is_price']:
+            worksheet.write(2, 7, 'Sale price', bold)
+
+        if datas['form']['is_cost']:
+            if not datas['form']['is_price']:
+                worksheet.write(2, 7, 'Cost', bold)
+            else:
+                worksheet.write(2, 8, 'Cost', bold)
         
         worksheet.set_column(0, 2, 15)
         worksheet.set_column(3, 4, 25)
@@ -69,9 +102,9 @@ class ProductDetailsWizard(models.TransientModel):
         worksheet.write(2, 0, 'Item', bold)
         worksheet.write(2, 1, 'Image', bold)
         worksheet.write(2, 2, 'Item code', bold)
-        worksheet.write(2, 3, 'Description', bold)
-        worksheet.write(2, 4, 'Qty', bold)
-        worksheet.write(2, 5, 'Sale price', bold)
+        worksheet.write(2, 3, 'Barcode', bold)
+        worksheet.write(2, 4, 'Description', bold)
+        worksheet.write(2, 5, 'Qty', bold)
         worksheet.write(2, 6, 'New price', bold)
         worksheet.freeze_panes(3, 0)  # Freeze the first row.
         
@@ -99,14 +132,26 @@ class ProductDetailsWizard(models.TransientModel):
                         worksheet.insert_image(row, col + 1, "product.png", {'image_data': buf_image})
                     worksheet.write(row, col + 2, product.default_code or '', text)
                     #worksheet.write(row, col + , product.barcode, text)
-                    worksheet.set_column('D:D', 35, text)
-                    worksheet.write(row, col + 3, product.name, text)
+                    worksheet.write(row, col + 3, product.barcode or '', text)
+                    # worksheet.set_column('D:D', 35, text)
+                    worksheet.write(row, col + 4, product.name, text)
                     #worksheet.write(row, col + 4, product.uom_id.name, text)
                     #worksheet.write(row, col + 5, product.standard_price, text)
-                    worksheet.write(row, col + 4, product.qty_available, text)
-                    worksheet.write(row, col + 5, product.lst_price, currency_format)
+                    worksheet.write(row, col + 5, product.qty_available, text)
                     new_price = pricelist._get_products_price(product,self.partner_id.id)
                     worksheet.write(row, col + 6, float(new_price[product.id]), currency_format)
+
+                    #Condicional price
+                    if datas['form']['is_price']:
+                        worksheet.write(row, col + 7, product.lst_price, currency_format)
+                    
+                    #Condicional costo
+                    if datas['form']['is_cost']:
+                        if not datas['form']['is_price']:
+                            worksheet.write(row, col + 7, product.standard_price, currency_format)
+                        else:
+                            worksheet.write(row, col + 8, product.standard_price, currency_format)
+
                     number += 1
                     row = row + 1
 
